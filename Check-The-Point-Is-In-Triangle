@@ -1,0 +1,66 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+struct Posi
+{
+	int x;
+	int y;
+	Posi(int a, int b):x(a), y(b){}
+};
+
+int Cross(Posi &a, Posi &b, Posi &p)
+{
+	return (b.x - a.x)*(p.y - a.y) - (p.x - a.x)*(b.y - a.y);
+}
+
+bool IsInLineLeft(Posi &a, Posi &b, Posi &p)
+{
+	return Cross(a, b, p) > 0;
+}
+
+bool IsInTriangle(Posi &a, Posi &b, Posi &c, Posi &p)
+{
+	
+	bool res = IsInLineLeft(a, b, p);
+	if(res != IsInLineLeft(b, c, p))
+		return false;
+	if(res != IsInLineLeft(c, a, p))
+		return false;
+	if(Cross(a, b, c) == 0)
+		return false;
+		
+	return true;
+}
+
+int main()
+{
+	
+	Posi A(1, 1);
+    Posi B(6, 3);
+    Posi C(4, 7);
+
+    Posi P(4, 1);
+    if (IsInTriangle(A, B, C, P))
+	{
+        cout << "P is in Trinagle ";
+	}
+    else
+	{
+        cout << "P is not in Trinagle ";
+	}
+	
+    printf("\n");
+
+    Posi Q(4, 5);
+    if (IsInTriangle(A, B, C, Q))
+	{
+        cout << "Q is in Trinagle ";
+	}
+    else
+	{
+        cout << "Q is not in Trinagle ";
+	}
+	
+    return 0;
+}
