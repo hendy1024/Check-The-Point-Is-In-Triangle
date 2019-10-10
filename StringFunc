@@ -1,0 +1,53 @@
+class String   
+{   
+    public:   
+    String(const char *str = NULL); // 通用构造函数   
+    String(const String &another); // 拷贝构造函数   
+    ~ String(); // 析构函数   
+    String & operater =(const String &rhs); // 赋值函数   
+    private:   
+    char *m_data; // 用于保存字符串   
+};  
+
+//编程写出类成员函数的实现
+
+
+String::String(const char *str)
+{
+	if(*str == NULL)
+	{
+			m_data = new char[1];
+			m_data[0] = '\0';
+	}
+	else
+	{
+		m_data = new char[strlen(str) + 1];
+		strcpy(m_data, str);
+	}
+}
+
+String::String(const String &another)
+{
+	m_data = new char[strlen(anther)+ 1];
+	strcpy(m_data, str);
+}
+
+String::~String()
+{
+	delete []m_data;
+}
+
+String& String::operater = (const String &rhs)
+{
+	if(this == &rhs)
+	{
+		return this;
+	}
+	
+	delete m_data;
+	
+	m_data = new char[strlen(rhs) + 1];
+	strcpy(m_data, rhs.m_data);
+	
+	return *this;
+}
