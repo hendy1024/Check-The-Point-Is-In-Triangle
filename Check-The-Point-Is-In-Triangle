@@ -18,7 +18,7 @@ bool IsInLineLeft(Posi &a, Posi &b, Posi &p)
 {
 	return Cross(a, b, p) > 0;
 }
-
+//判断点是否在三角形内的规则：该点处于三条线的右方
 bool IsInTriangle(Posi &a, Posi &b, Posi &c, Posi &p)
 {
 	
